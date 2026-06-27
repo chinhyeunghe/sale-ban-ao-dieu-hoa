@@ -939,6 +939,15 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--navy-medium);
+            background-color: var(--navy-medium);
+            color: var(--white);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            flex-shrink: 0;
         }
 
         .reviewer-name {
@@ -1232,6 +1241,102 @@
                 transform: translateX(150px);
                 opacity: 0;
             }
+        }
+
+        /* 7.1 REVIEW GALLERY & LIGHTBOX */
+        .review-media-gallery {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .review-media-item {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            cursor: pointer;
+            position: relative;
+            background-color: var(--navy-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .review-media-item img,
+        .review-media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-fast);
+        }
+
+        .review-media-item:hover img,
+        .review-media-item:hover video {
+            transform: scale(1.08);
+        }
+
+        .review-media-item.video-item::after {
+            content: '\f04b';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--white);
+            background-color: rgba(255, 101, 0, 0.85);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--white);
+            z-index: 1;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(11, 25, 44, 0.95);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--orange-accent);
         }
     </style>
 </head>
@@ -1550,10 +1655,11 @@
         <div class="container">
             <h2>ĐÁNH GIÁ THỰC TẾ TỪ AE LAO ĐỘNG</h2>
             <div class="reviews-grid">
+                <!-- 1. minh ngoc -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-1.webp" alt="minh ngoc" class="reviewer-avatar">
+                            <div class="reviewer-avatar">MN</div>
                             <div>
                                 <div class="reviewer-name">minh ngoc</div>
                                 <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
@@ -1568,9 +1674,7 @@
                         </div>
                     </div>
                     <div class="review-body">
-                        "Mình rất hài lòng với đơn hàng lần này. Sản phẩm được đóng gói cẩn thận, giao hàng nhanh hơn dự
-                        kiến. Chất lượng đúng như mô tả, thậm chí còn vượt mong đợi. Shop rất nhiệt tình, tư vấn chu đáo
-                        và phản hồi nhanh chóng. Mình sẽ tiếp tục ủng hộ trong những lần sau!"
+                        "Mình rất hài lòng với đơn hàng lần này. Sản phẩm được đóng gói cẩn thận, giao hàng nhanh hơn dự kiến. Chất lượng đúng như mô tả, thậm chí còn vượt mong đợi. Shop rất nhiệt tình, tư vấn chu đáo và phản hồi nhanh chóng. Mình sẽ tiếp tục ủng hộ trong những lần sau!"
                     </div>
                     <div class="review-meta">
                         <span>Phân loại: <strong>1 Xanh + 1 Xám + 1 Phụ Kiện</strong></span>
@@ -1578,10 +1682,11 @@
                     </div>
                 </div>
 
+                <!-- 2. ngocthanh142 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-2.webp" alt="ngocthanh142" class="reviewer-avatar">
+                            <div class="reviewer-avatar">NT</div>
                             <div>
                                 <div class="reviewer-name">ngocthanh142</div>
                                 <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
@@ -1596,8 +1701,16 @@
                         </div>
                     </div>
                     <div class="review-body">
-                        "Chất liệu kaki, đúng với mô tả. Quạt rất mát phà phà lên mặt, áo vừa phải không dày lắm. Nói
-                        chung mát ok là được, quá tuyệt vời."
+                        "Màu sắc: xanh đen. Chất liệu: kaki. Đúng với mô tả, quạt rất mát phà phà lên mặt, áo vừa phải không dày lắm, nói chung mát ok là được, quá tuyệt vời."
+                    </div>
+                    <!-- Ảnh đính kèm thực tế của ngocthanh142 -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-7ras8-mbt4bsdy6q9ef1.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-7ras8-mbt4bsdy6q9ef1.webp" alt="Ảnh chụp ngocthanh142">
+                        </div>
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-7ras8-mbt4bsdy5c2yb8.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-7ras8-mbt4bsdy5c2yb8.webp" alt="Ảnh chụp ngocthanh142">
+                        </div>
                     </div>
                     <div class="review-meta">
                         <span>Phân loại: <strong>Màu Xanh + Pin</strong></span>
@@ -1605,10 +1718,11 @@
                     </div>
                 </div>
 
+                <!-- 3. nguyen ninh -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-3.webp" alt="nguyen ninh" class="reviewer-avatar">
+                            <img src="assets/images/reviews/ad2871e7831876338480988895023947_tn.webp" alt="nguyen ninh" class="reviewer-avatar">
                             <div>
                                 <div class="reviewer-name">nguyen ninh</div>
                                 <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
@@ -1623,8 +1737,7 @@
                         </div>
                     </div>
                     <div class="review-body">
-                        "Màu sắc xanh biển, chất liệu đúng áo lao động. Vải áo chắc chắn, pin quạt khá oki sài được lâu.
-                        Nói chung là ổn áp á."
+                        "Vải áo chắc chắn, đúng áo lao động. Pin quạt khá oki sài được lâu. Nói chung là ổn áp á."
                     </div>
                     <div class="review-meta">
                         <span>Phân loại: <strong>Màu Xanh + Pin</strong></span>
@@ -1632,10 +1745,11 @@
                     </div>
                 </div>
 
+                <!-- 4. huyen.lau -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-4.webp" alt="huyen.lau" class="reviewer-avatar">
+                            <img src="assets/images/reviews/vn-11134233-7r98o-luisbw5rs7519a_tn.webp" alt="huyen.lau" class="reviewer-avatar">
                             <div>
                                 <div class="reviewer-name">huyen.lau</div>
                                 <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
@@ -1650,8 +1764,7 @@
                         </div>
                     </div>
                     <div class="review-body">
-                        "Mua thử cho thợ mặc đi làm công trường cho đỡ nóng mà thấy thợ khen hết lời. Giá rẻ, có công
-                        dụng làm mát rất ok ạ."
+                        "Mua thử cho thợ mặc đi làm công trường cho đỡ nóng mà thấy thợ khen hết lời. Giá rẻ, có công dụng làm mát rất ok ạ."
                     </div>
                     <div class="review-meta">
                         <span>Phân loại: <strong>2 Màu Xanh + Pin</strong></span>
@@ -1659,37 +1772,11 @@
                     </div>
                 </div>
 
+                <!-- 5. Hoai Phuong -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-5.webp" alt="Tran hanh" class="reviewer-avatar">
-                            <div>
-                                <div class="reviewer-name">Tran hanh</div>
-                                <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
-                            </div>
-                        </div>
-                        <div class="rating-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="review-body">
-                        "Đã mua đã xài, chất liệu mát phù hợp. Shop hỗ trợ bảo hành nhiệt tình lắm ạ, nên mua nha mọi
-                        người!"
-                    </div>
-                    <div class="review-meta">
-                        <span>Phân loại: <strong>Màu Xám + Pin</strong></span>
-                        <span>Ngày đánh giá: 14/06/2026</span>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <img src="assets/images/reviews/avatar-6.webp" alt="Hoai Phuong" class="reviewer-avatar">
+                            <img src="assets/images/reviews/48448fc8b35b8131749a01b112823a96_tn.jfif" alt="Hoai Phuong" class="reviewer-avatar">
                             <div>
                                 <div class="reviewer-name">Hoai Phuong</div>
                                 <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
@@ -1706,9 +1793,168 @@
                     <div class="review-body">
                         "Shop hỗ trợ đổi size áo nhanh chóng. Quá ưng luôn ạ. Mọi người nên mua nha. Shop trả lời tin nhắn siêu nhanh, hỗ trợ khách nhiệt tình."
                     </div>
+                    <!-- Ảnh & Video đính kèm thực tế của Hoai Phuong -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/review-image-1.webp', 'image')">
+                            <img src="assets/images/reviews/review-image-1.webp" alt="Ảnh chụp Hoai Phuong">
+                        </div>
+                        <div class="review-media-item video-item" onclick="openLightbox('assets/images/reviews/vn-11110103-6va0q-mntxb26xvn5tbe.default.mp4', 'video')">
+                            <video src="assets/images/reviews/vn-11110103-6va0q-mntxb26xvn5tbe.default.mp4" style="pointer-events: none;"></video>
+                        </div>
+                    </div>
                     <div class="review-meta">
                         <span>Phân loại: <strong>Màu Xanh + Pin</strong></span>
                         <span>Ngày đánh giá: 27/06/2026</span>
+                    </div>
+                </div>
+
+                <!-- 6. duyanhv801 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">DA</div>
+                            <div>
+                                <div class="reviewer-name">duyanhv801</div>
+                                <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        "Cục sạc hơi nặng do phải tải công suất lớn, còn lại áo mặc bật lên rất mát, chất vải sờ sướng tay cực kỳ."
+                    </div>
+                    <!-- Ảnh & Video đính kèm thực tế của duyanhv801 -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-81ztc-mndqdlxpewape4.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-81ztc-mndqdlxpewape4.webp" alt="Ảnh chụp duyanhv801">
+                        </div>
+                        <div class="review-media-item video-item" onclick="openLightbox('assets/images/reviews/vn-11110103-6va0j-mndqe0llmako0f.16000051776912127.mp4', 'video')">
+                            <video src="assets/images/reviews/vn-11110103-6va0j-mndqe0llmako0f.16000051776912127.mp4" style="pointer-events: none;"></video>
+                        </div>
+                    </div>
+                    <div class="review-meta">
+                        <span>Phân loại: <strong>Màu Xanh + Pin</strong></span>
+                        <span>Ngày đánh giá: 27/06/2026</span>
+                    </div>
+                </div>
+
+                <!-- 7. Bui Minh Hoang -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">BH</div>
+                            <div>
+                                <div class="reviewer-name">Bui Minh Hoang</div>
+                                <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        "Áo mặc vào mát lắm pin trâu. Mình đặt nhầm size shop đã nhiệt tình đổi lại áo cho mình. Shop 10 điểm k có nhưng🥰"
+                    </div>
+                    <!-- Ảnh & Video đính kèm thực tế của Bui Minh Hoang -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-7ra0g-m6jslmbkgkgxac@resize_w144_nl.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-7ra0g-m6jslmbkgkgxac@resize_w144_nl.webp" alt="Ảnh chụp Bui Minh Hoang">
+                        </div>
+                        <div class="review-media-item video-item" onclick="openLightbox('assets/images/reviews/vn-11110103-6khw5-m6jslno4hig142.16000051740231971.mp4', 'video')">
+                            <video src="assets/images/reviews/vn-11110103-6khw5-m6jslno4hig142.16000051740231971.mp4" style="pointer-events: none;"></video>
+                        </div>
+                    </div>
+                    <div class="review-meta">
+                        <span>Phân loại: <strong>Màu Xám + Pin</strong></span>
+                        <span>Ngày đánh giá: 26/06/2026</span>
+                    </div>
+                </div>
+
+                <!-- 8. hopbich1985 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">HB</div>
+                            <div>
+                                <div class="reviewer-name">hopbich1985</div>
+                                <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        "Shop giao hàng nhanh đóng gói cẩn thận giá cả hợp lý tặng shop 5 sao. Áo mặc thử mát lắm."
+                    </div>
+                    <!-- Ảnh & Video đính kèm thực tế của hopbich1985 -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-81ztc-momftvb1for04b.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-81ztc-momftvb1for04b.webp" alt="Ảnh chụp hopbich1985">
+                        </div>
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-81ztc-momftvb1ea6kb0.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-81ztc-momftvb1ea6kb0.webp" alt="Ảnh chụp hopbich1985">
+                        </div>
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-81ztc-momftvb1cvm409.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-81ztc-momftvb1cvm409.webp" alt="Ảnh chụp hopbich1985">
+                        </div>
+                        <div class="review-media-item video-item" onclick="openLightbox('assets/images/reviews/vn-11110103-6va0h-momfuspjp0xs0b.16000051779618465.mp4', 'video')">
+                            <video src="assets/images/reviews/vn-11110103-6va0h-momfuspjp0xs0b.16000051779618465.mp4" style="pointer-events: none;"></video>
+                        </div>
+                    </div>
+                    <div class="review-meta">
+                        <span>Phân loại: <strong>combo 2 màu Xám + Pin</strong></span>
+                        <span>Ngày đánh giá: 25/06/2026</span>
+                    </div>
+                </div>
+
+                <!-- 9. hp.phuongphuong -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="assets/images/reviews/2b02b2dcc9d7c92b7de9cc121ab3cea4_tn.webp" alt="hp.phuongphuong" class="reviewer-avatar">
+                            <div>
+                                <div class="reviewer-name">hp.phuongphuong</div>
+                                <div class="reviewer-badge"><i class="fa-solid fa-circle-check"></i> Đã mua hàng</div>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        "Chất liệu: vải chắc chắn. Làm mát: áo điều hòa làm mát cực nhanh. Pin sạc đầy sử dụng dc 10 tiếng ở mức cao nhất, đi làm cả ngày không lo nóng."
+                    </div>
+                    <!-- Ảnh & Video đính kèm thực tế của hp.phuongphuong -->
+                    <div class="review-media-gallery">
+                        <div class="review-media-item" onclick="openLightbox('assets/images/reviews/vn-11134103-81ztc-mnycbh4tlm2wc5.webp', 'image')">
+                            <img src="assets/images/reviews/vn-11134103-81ztc-mnycbh4tlm2wc5.webp" alt="Ảnh chụp hp.phuongphuong">
+                        </div>
+                        <div class="review-media-item video-item" onclick="openLightbox('assets/images/reviews/vn-11110103-6va09-mnycbtvnmmtc89.16000051778159708.mp4', 'video')">
+                            <video src="assets/images/reviews/vn-11110103-6va09-mnycbtvnmmtc89.16000051778159708.mp4" style="pointer-events: none;"></video>
+                        </div>
+                    </div>
+                    <div class="review-meta">
+                        <span>Phân loại: <strong>Màu Xanh + Pin</strong></span>
+                        <span>Ngày đánh giá: 24/06/2026</span>
                     </div>
                 </div>
             </div>
@@ -1811,6 +2057,45 @@
                 stickyBar.style.transform = 'translateY(0)';
             }
         });
+    </script>
+
+    <!-- Lightbox Modal for Review Media -->
+    <div id="mediaLightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Media phóng to" style="display: none; max-width: 100%; max-height: 80vh; border-radius: var(--radius-sm);">
+            <video id="lightboxVideo" src="" controls style="display: none; max-width: 100%; max-height: 80vh; border-radius: var(--radius-sm);"></video>
+        </div>
+    </div>
+
+    <!-- Script for Lightbox Modal -->
+    <script>
+        function openLightbox(src, type) {
+            var lightbox = document.getElementById('mediaLightbox');
+            var lightboxImg = document.getElementById('lightboxImg');
+            var lightboxVideo = document.getElementById('lightboxVideo');
+
+            if (type === 'image') {
+                lightboxImg.src = src;
+                lightboxImg.style.display = 'block';
+                lightboxVideo.style.display = 'none';
+                lightboxVideo.pause();
+            } else if (type === 'video') {
+                lightboxVideo.src = src;
+                lightboxVideo.style.display = 'block';
+                lightboxImg.style.display = 'none';
+                lightboxVideo.play();
+            }
+
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('mediaLightbox');
+            var lightboxVideo = document.getElementById('lightboxVideo');
+            lightbox.style.display = 'none';
+            lightboxVideo.pause();
+        }
     </script>
 </body>
 
