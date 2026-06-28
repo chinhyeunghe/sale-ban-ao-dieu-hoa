@@ -27,6 +27,9 @@
     <!-- FontAwesome Icons for Beautiful Visuals -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* CSS RESET & CUSTOM TOKENS */
         :root {
@@ -780,70 +783,74 @@
             }
         }
 
-        .solution-image {
-            background-color: var(--navy-dark);
-            border-radius: var(--radius-lg);
-            padding: 30px;
-            color: var(--white);
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .solution-image::after {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(0, 173, 181, 0.1) 0%, transparent 60%);
-            top: -25%;
-            left: -25%;
-            pointer-events: none;
-        }
-
-        .solution-visual-box {
-            background-color: var(--navy-medium);
-            border: 2px solid var(--navy-light);
-            border-radius: var(--radius-md);
+        /* 3. GIẢI PHÁP SECTION SLIDER (SWIPER 1:1) */
+        .solution-slider-container {
             width: 100%;
-            padding: 25px;
-            margin: 20px 0;
+            max-width: 450px;
+            /* Định dạng hình vuông 1:1 nổi bật hiển thị ảnh chuẩn */
+            margin: 0 auto;
             position: relative;
+            z-index: 5;
         }
 
-        .solution-wind-arrow {
-            position: absolute;
-            font-size: 1.5rem;
-            color: var(--blue-cool);
-            animation: pulse 1.5s infinite;
+        .solutionSwiper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            /* Hiển thị tỉ lệ 1:1 chuẩn kích thước gốc */
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg), 0 10px 30px rgba(0, 0, 0, 0.15);
+            background-color: var(--navy-dark);
+            overflow: hidden;
         }
 
-        .arrow-l {
-            left: 15px;
-            top: 50%;
+        .solutionSwiper .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .arrow-r {
-            right: 15px;
-            top: 50%;
+        /* Tùy chỉnh màu sắc nút Swiper sang tông màu cam conversion */
+        .solutionSwiper .swiper-button-next,
+        .solutionSwiper .swiper-button-prev {
+            color: var(--white);
+            background-color: rgba(11, 25, 44, 0.6);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-fast);
         }
 
-        .solution-visual-icon {
-            font-size: 3.5rem;
-            color: var(--blue-cool);
-            animation: spin-slow 6s linear infinite;
+        .solutionSwiper .swiper-button-next:after,
+        .solutionSwiper .swiper-button-prev:after {
+            font-size: 1.15rem;
+            font-weight: bold;
         }
 
-        .solution-tag {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--blue-cool);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .solutionSwiper .swiper-button-next:hover,
+        .solutionSwiper .swiper-button-prev:hover {
+            background-color: var(--orange-accent);
+            border-color: var(--white);
+            transform: scale(1.08);
+        }
+
+        /* Tùy chỉnh dấu phân trang Swiper */
+        .solutionSwiper .swiper-pagination-bullet {
+            background: var(--white);
+            opacity: 0.5;
+            width: 8px;
+            height: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .solutionSwiper .swiper-pagination-bullet-active {
+            background: var(--orange-accent) !important;
+            opacity: 1;
+            width: 18px;
+            border-radius: 4px;
         }
 
         .solution-content h3 {
@@ -914,42 +921,83 @@
 
         .feature-card {
             background-color: var(--navy-medium);
-            padding: 30px;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-md);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: all var(--transition-normal);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--blue-cool);
-            box-shadow: 0 10px 25px rgba(0, 173, 181, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 173, 181, 0.35);
+        }
+
+        .feature-img-box {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--navy-dark);
+        }
+
+        .feature-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .feature-card:hover .feature-img-box img {
+            transform: scale(1.08);
+        }
+
+        .feature-card-body {
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .feature-header-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+            padding-bottom: 12px;
         }
 
         .feature-icon-box {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(0, 173, 181, 0.1);
+            width: 42px;
+            height: 42px;
+            background-color: rgba(0, 173, 181, 0.15);
             border: 2px solid var(--blue-cool);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 1.25rem;
             color: var(--blue-cool);
-            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--white);
+            margin: 0;
+            line-height: 1.3;
+            text-transform: uppercase;
         }
 
         .feature-card p {
             color: rgba(248, 250, 252, 0.8);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
+            line-height: 1.55;
         }
 
         /* 5. BẢNG SIZE SECTION */
@@ -1041,9 +1089,71 @@
             background-color: var(--gray-100);
         }
 
+        .instruction-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            align-items: start;
+        }
+
+        @media (min-width: 992px) {
+            .instruction-grid {
+                grid-template-columns: 1.15fr 0.85fr;
+                gap: 50px;
+            }
+        }
+
+        .instruction-left {
+            width: 100%;
+        }
+
+        .instruction-right {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .instruction-video-wrapper {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 9 / 16;
+            background-color: var(--navy-dark);
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg), 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instruction-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-play-hint {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 101, 0, 0.9);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+            box-shadow: var(--shadow-sm);
+            z-index: 5;
+            animation: pulse 2s infinite;
+        }
+
         .timeline {
-            max-width: 800px;
-            margin: 40px auto 0;
             position: relative;
             padding-left: 30px;
         }
@@ -1114,14 +1224,15 @@
         }
 
         .instruction-warning {
-            max-width: 800px;
-            margin: 30px auto 0;
+            width: 100%;
+            margin: 40px auto 0;
             background-color: #FEF2F2;
             border-left: 4px solid #EF4444;
-            padding: 15px;
+            padding: 15px 20px;
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             display: flex;
             gap: 12px;
+            box-shadow: var(--shadow-sm);
         }
 
         .instruction-warning i {
@@ -1640,7 +1751,7 @@
                 <div class="hero-image-wrapper">
                     <div class="product-badge-overlay">
                         CHỈ TỪ
-                        <span>659K</span>
+                        <span>600K</span>
                         <div style="font-size: 0.55rem; text-decoration: line-through; opacity: 0.8;">Gốc 800K</div>
                     </div>
                     <!-- Ambient Glow Behind Video -->
@@ -1745,39 +1856,75 @@
     <section class="solution section-padding">
         <div class="container">
             <div class="solution-grid">
-                <div class="solution-image">
-                    <div class="solution-tag">GIẢI PHÁP SỐ 1 CHO NGÀY HÈ</div>
-                    <div class="solution-visual-box">
-                        <i class="fa-solid fa-chevron-left solution-wind-arrow arrow-l"></i>
-                        <i class="fa-solid fa-fan solution-visual-icon"></i>
-                        <i class="fa-solid fa-chevron-right solution-wind-arrow arrow-r"></i>
+                <div class="solution-slider-container">
+                    <!-- Swiper Container -->
+                    <div class="swiper solutionSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-1.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 1"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-2.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 2"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-3.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 3"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-4.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 4"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-5.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 5"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-6.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 6"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-7.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 7"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-8.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 8"></div>
+                            <div class="swiper-slide"><img src="assets/images/slides/slide-9.webp"
+                                    alt="Hình ảnh sản phẩm thực tế 9"></div>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+
+                        <!-- Pagination dots -->
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <h4 style="font-size: 1.3rem; text-transform: uppercase;">Luồng Gió Làm Mát Khép Kín</h4>
-                    <p style="color: var(--blue-cool); font-size: 0.9rem; font-weight: 700; margin-top: 5px;">Hạ nhiệt
-                        cơ thể tức thì 10 - 12 độ C</p>
                 </div>
                 <div class="solution-content">
                     <h3>"CỨU TINH" ÁO ĐIỀU HÒA NHẬT BẢN</h3>
                     <p class="solution-desc">
-                        Không còn nỗi sợ nắng nóng, không còn những ngày làm việc đẫm mồ hôi. Áo điều hòa công nghệ Nhật
-                        Bản hoạt động theo cơ chế thổi gió liên tục từ 2 quạt mini bên sườn, luân chuyển khí mát đi khắp
-                        cơ thể, đẩy hơi nóng ra ngoài qua cổ áo và cổ tay.
+                        Áo điều hòa Nhật Bản không chỉ là một trang phục bảo hộ đơn thuần, mà là <strong>hệ thống làm
+                            mát cơ động toàn diện</strong>. Bằng cơ chế thổi gió khép kín liên tục đi khắp cơ thể từ 2
+                        quạt mini bên sườn, hơi nóng sẽ được đẩy ra ngoài nhanh chóng, hạ nhiệt cơ thể tức thì từ 10 -
+                        12 độ C.
                     </p>
                     <p class="solution-desc" style="font-weight: 600; color: var(--navy-medium);">
-                        Sản phẩm sinh ra để phục vụ thợ hàn, thợ điện, công nhân công trường, đầu bếp, shipper, nông
-                        dân... những người hùng lao động thực thụ!
+                        Đây là giải pháp cứu cánh hàng đầu được hàng vạn AE thợ hàn, thợ điện, công nhân công trường,
+                        shipper, đầu bếp, nông dân... lựa chọn để bảo vệ sức khỏe và duy trì nhịp độ làm việc.
                     </p>
                     <ul class="solution-highlights">
-                        <li><i class="fa-solid fa-circle-check"></i> Quạt công suất lớn thổi bay nắng nóng ngay lập tức
+                        <li>
+                            <i class="fa-solid fa-snowflake"></i>
+                            <strong>Hạ nhiệt tức thì 10 - 12°C:</strong> Cảm nhận sự mát lạnh sảng khoái thổi bay nắng
+                            nóng ngay khi khoác áo lên người.
                         </li>
-                        <li><i class="fa-solid fa-circle-check"></i> Vải nhập khẩu bền bỉ, chống bắt tia lửa điện</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Pin siêu khủng hoạt động bền bỉ cả ca làm việc dài
+                        <li>
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                            <strong>Tăng hiệu suất lao động:</strong> Duy trì thể lực bền bỉ, giúp AE làm việc tập trung
+                            hơn, nâng cao năng suất và tăng thu nhập mỗi ngày.
                         </li>
-                        <li><i class="fa-solid fa-circle-check"></i> Thiết kế bảo hộ an toàn với phản quang chuyên
-                            nghiệp</li>
+                        <li>
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <strong>Bảo vệ sức khỏe tối đa:</strong> Phòng ngừa triệt để nguy cơ sốc nhiệt, mất nước say
+                            nắng nguy hiểm khi làm việc gắt.
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-sack-dollar"></i>
+                            <strong>Tiết kiệm chi phí đầu tư:</strong> Chất vải Nhật tráng nano chống xước, chống cháy
+                            xém tia lửa hàn, siêu bền bỉ dùng 3 - 5 năm vẫn như mới.
+                        </li>
                     </ul>
                     <a href="AFFILIATE_LINK_HERE" class="btn btn-primary">
-                        <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i> MUA NGAY ĐỂ BẢO VỆ SỨC KHỎE
+                        <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i> ĐẶT MUA NGAY — NHẬN ƯU ĐÃI
+                        GIẢM GIÁ TỐT NHẤT
                     </a>
                 </div>
             </div>
@@ -1789,53 +1936,112 @@
         <div class="container">
             <h2>LỢI ÍCH NỔI BẬT VƯỢT TRỘI</h2>
             <div class="feature-grid">
+                <!-- Lợi ích 1: Quạt 25V -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-fan animate-spin-slow"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/fan_power.png"
+                            alt="Quạt 25V siêu mát lạnh chạy 12-14h liên tục">
                     </div>
-                    <h3>QUẠT 25V - MÁT 12–14 TIẾNG</h3>
-                    <p>Hệ thống quạt gió công suất 25V cực mạnh, làm mát siêu nhanh. Pin dung lượng cao chạy liên tục
-                        12-14 giờ chỉ với 1 lần sạc đầy, cân trọn ca làm việc.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-fan animate-spin-slow"></i>
+                            </div>
+                            <h3>QUẠT 25V - MÁT 12–14 TIẾNG</h3>
+                        </div>
+                        <p>Hệ thống quạt gió công suất 25V cực mạnh, làm mát siêu nhanh. Pin dung lượng cao chạy liên
+                            tục 12-14 giờ chỉ với 1 lần sạc đầy, cân trọn ca làm việc.</p>
+                    </div>
                 </div>
+
+                <!-- Lợi ích 2: Chống bắt tia lửa điện -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-fire-burner"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/fire_resistant.png"
+                            alt="Chất vải chống cháy tráng nano chống bắt tia lửa điện">
                     </div>
-                    <h3>CHỐNG BẮT TIA LỬA ĐIỆN</h3>
-                    <p>Sợi vải tráng nano cao cấp nhập khẩu 100% Nhật Bản, chống cháy xém từ tia lửa điện. Cực kỳ thích
-                        hợp cho thợ hàn xì, thợ cơ khí và đầu bếp.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-fire-burner"></i>
+                            </div>
+                            <h3>CHỐNG BẮT TIA LỬA ĐIỆN</h3>
+                        </div>
+                        <p>Sợi vải tráng nano cao cấp nhập khẩu 100% Nhật Bản, chống cháy xém từ tia lửa điện. Cực kỳ
+                            thích hợp cho thợ hàn xì, thợ cơ khí và đầu bếp.</p>
+                    </div>
                 </div>
+
+                <!-- Lợi ích 3: Khử khuẩn Ag+ -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-shield-virus"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/antibacterial_fabric.png"
+                            alt="Vải trộn 3% sợi bạc Ag+ khử khuẩn mùi hôi">
                     </div>
-                    <h3>3% Ag+ KHỬ KHUẨN VÀ MÙI HÔI</h3>
-                    <p>Vải dệt trộn 3% sợi bạc Ag+ hoạt tính giúp tiêu diệt vi khuẩn gây mùi, giữ áo luôn thơm tho, sạch
-                        sẽ, bảo vệ làn da AE không bị mẩn ngứa.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <h3>3% Ag+ KHỬ KHUẨN VÀ MÙI HÔI</h3>
+                        </div>
+                        <p>Vải dệt trộn 3% sợi bạc Ag+ hoạt tính giúp tiêu diệt vi khuẩn gây mùi, giữ áo luôn thơm tho,
+                            sạch sẽ, bảo vệ làn da AE không bị mẩn ngứa.</p>
+                    </div>
                 </div>
+
+                <!-- Lợi ích 4: Dây phản quang -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-arrows-to-eye"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/reflective_safety.png"
+                            alt="Dây phản quang an toàn trước ngực sau lưng">
                     </div>
-                    <h3>DÂY PHẢN QUANG AN TOÀN</h3>
-                    <p>Thiết kế dây phản quang trước ngực và sau lưng giúp AE nổi bật, an toàn khi làm việc trong đêm
-                        hoặc môi trường thiếu ánh sáng.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-arrows-to-eye"></i>
+                            </div>
+                            <h3>DÂY PHẢN QUANG AN TOÀN</h3>
+                        </div>
+                        <p>Thiết kế dây phản quang trước ngực và sau lưng giúp AE nổi bật, an toàn khi làm việc trong
+                            đêm hoặc môi trường thiếu ánh sáng.</p>
+                    </div>
                 </div>
+
+                <!-- Lợi ích 5: Vải xịn lên form cực đẹp -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-shirt"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/premium_fabric_form.png"
+                            alt="Chất vải xịn lên form áo cực đẹp">
                     </div>
-                    <h3>VẢI XỊN LÊN FORM CỰC ĐẸP</h3>
-                    <p>Chất vải chống xù lông, không phai màu, không nhăn nheo sau khi giặt. Hệ thống cúc bấm, tem mác
-                        và khóa kéo đồng bộ, chắc chắn, chuẩn chất lượng cao.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                            <h3>VẢI XỊN LÊN FORM CỰC ĐẸP</h3>
+                        </div>
+                        <p>Chất vải chống xù lông, không phai màu, không nhăn nheo sau khi giặt. Hệ thống cúc bấm, tem
+                            mác và khóa kéo đồng bộ, chắc chắn, chuẩn chất lượng cao.</p>
+                    </div>
                 </div>
+
+                <!-- Lợi ích 6: Bộ phụ kiện đồng bộ -->
                 <div class="feature-card">
-                    <div class="feature-icon-box">
-                        <i class="fa-solid fa-gears"></i>
+                    <div class="feature-img-box">
+                        <img src="assets/images/features/accessories_kit.png"
+                            alt="Bộ phụ kiện sạc quạt cáp nối cao cấp chính hãng">
                     </div>
-                    <h3>BỘ PHỤ KIỆN ĐỒNG BỘ</h3>
-                    <p>Bộ phụ kiện đi kèm gồm pin sạc nhanh, quạt, cáp nối cao cấp. Mọi chi tiết đều được hoàn thiện
-                        tinh xảo, tuổi thọ lên tới hàng năm trời.</p>
+                    <div class="feature-card-body">
+                        <div class="feature-header-row">
+                            <div class="feature-icon-box">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h3>BỘ PHỤ KIỆN ĐỒNG BỘ</h3>
+                        </div>
+                        <p>Bộ phụ kiện đi kèm gồm pin sạc nhanh, quạt, cáp nối cao cấp. Mọi chi tiết đều được hoàn thiện
+                            tinh xảo, tuổi thọ lên tới hàng năm trời.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1884,7 +2090,7 @@
                 <div style="margin-top: 30px;">
                     <h4
                         style="color: var(--navy-dark); font-size: 1.2rem; margin-bottom: 15px; border-left: 4px solid var(--orange-accent); padding-left: 10px;">
-                        CÁC PHÂN LOẠI ĐẶT HÀNG:</h4>
+                        CÁC PHÂN LOẠI LỰA CHỌN:</h4>
                     <ul style="list-style: none; padding-left: 5px;">
                         <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
                                 style="color: var(--orange-accent); margin-right: 8px;"></i> Màu Xanh + Bộ Pin Quạt</li>
@@ -1909,37 +2115,57 @@
     <section class="instructions section-padding">
         <div class="container">
             <h2>HƯỚNG DẪN LẮP ĐẶT & SỬ DỤNG</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-badge">1</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Kiểm Tra & Sạc Pin</h3>
-                        <p>Kiểm tra pin trước khi dùng. AE nhớ sạc liên tục <strong>8 tiếng</strong> trong lần sử dụng
-                            đầu tiên để đảm bảo độ bền tối đa cho pin.</p>
+
+            <div class="instruction-grid">
+                <!-- Cột bên trái: Các bước hướng dẫn -->
+                <div class="instruction-left">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-badge">1</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Kiểm Tra & Sạc Pin</h3>
+                                <p>Kiểm tra pin trước khi dùng. AE nhớ sạc liên tục <strong>8 tiếng</strong> trong lần
+                                    sử dụng đầu tiên để đảm bảo độ bền tối đa cho pin.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-badge">2</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Lắp Quạt Vào Áo</h3>
+                                <p>Tháo cánh quạt làm 2 phần: Đặt phần nhựa mỏng (không có cánh) ở mặt ngoài áo; đặt
+                                    phần có cánh quạt ở bên trong áo và vặn khớp lại với nhau.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-badge">3</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Kết Nối Dây Dẫn</h3>
+                                <p>Cắm dây cáp kết nối: Đầu màu đỏ cắm vào pin dự phòng, 2 đầu màu đen cắm vào 2 chiếc
+                                    quạt hai bên sườn.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-badge">4</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Bật Nguồn & Điều Chỉnh Tốc Độ</h3>
+                                <p>Ấn và giữ nút nguồn từ 4–7 giây để khởi động quạt. Nhấn tiếp nút nguồn để thay đổi
+                                    tốc độ gió (mức 4 là gió mạnh nhất, mát lạnh phà phà).</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-badge">2</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Lắp Quạt Vào Áo</h3>
-                        <p>Tháo cánh quạt làm 2 phần: Đặt phần nhựa mỏng (không có cánh) ở mặt ngoài áo; đặt phần có
-                            cánh quạt ở bên trong áo và vặn khớp lại với nhau.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-badge">3</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Kết Nối Dây Dẫn</h3>
-                        <p>Cắm dây cáp kết nối: Đầu màu đỏ cắm vào pin dự phòng, 2 đầu màu đen cắm vào 2 chiếc quạt hai
-                            bên sườn.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-badge">4</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Bật Nguồn & Điều Chỉnh Tốc Độ</h3>
-                        <p>Ấn và giữ nút nguồn từ 4–7 giây để khởi động quạt. Nhấn tiếp nút nguồn để thay đổi tốc độ gió
-                            (mức 4 là gió mạnh nhất, mát lạnh phà phà).</p>
+
+                <!-- Cột bên phải: Video 9:16 hướng dẫn tháo lắp thực tế -->
+                <div class="instruction-right">
+                    <div class="instruction-video-wrapper">
+                        <video id="instructionVideo" autoplay loop muted playsinline
+                            poster="assets/images/features/accessories_kit.png">
+                            <source src="assets/videos/huong-dan-thao-lap.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ phát video HTML5.
+                        </video>
+                        <div class="video-play-hint">
+                            <i class="fa-solid fa-circle-play"></i> Hướng Dẫn Tháo Lắp
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2362,6 +2588,9 @@
         </a>
     </div>
 
+    <!-- Swiper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <!-- Script to auto show/hide or animate the Sticky CTA bar based on scroll position if needed -->
     <script>
         // Có thể bổ sung hiệu ứng ẩn sticky bar khi cuộn xuống cùng, hoặc hiện sau khi cuộn qua Hero Section
@@ -2378,6 +2607,26 @@
                 stickyBar.style.transform = 'translateY(0)';
             }
         });
+
+        // Swiper Slider Initialization
+        const swiper = new Swiper('.solutionSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'slide',
+            speed: 600,
+        });
     </script>
 
     <!-- Lightbox Modal for Review Media -->
@@ -2390,6 +2639,8 @@
                 style="display: none; max-width: 100%; max-height: 80vh; border-radius: var(--radius-sm);"></video>
         </div>
     </div>
+
+
 
     <!-- Script for Lightbox Modal -->
     <script>
@@ -2431,6 +2682,8 @@
                 });
             }
         }
+
+
     </script>
 </body>
 
