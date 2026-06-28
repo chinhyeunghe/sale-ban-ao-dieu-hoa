@@ -1700,6 +1700,112 @@
         .lightbox-close:hover {
             color: var(--orange-accent);
         }
+
+        /* FLOATING QUICK NAVIGATION DOCK */
+        .quick-nav-dock {
+            position: fixed;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            bottom: 80px;
+            /* Above mobile sticky CTA bar */
+            right: 12px;
+            max-width: 220px;
+        }
+
+        .quick-dock-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            background: rgba(11, 25, 44, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all var(--transition-normal);
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            white-space: normal;
+            line-height: 1.25;
+            text-align: left;
+        }
+
+        .quick-dock-btn i {
+            color: var(--blue-cool);
+            font-size: 0.85rem;
+            width: 14px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-fast) ease;
+        }
+
+        .quick-dock-btn span {
+            display: inline;
+        }
+
+        .quick-dock-btn:hover {
+            background: linear-gradient(135deg, var(--blue-cool) 0%, #00d2fc 100%);
+            color: var(--navy-dark);
+            transform: translateX(-8px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 173, 181, 0.5);
+            border-color: var(--blue-cool);
+        }
+
+        .quick-dock-btn:hover i {
+            color: var(--navy-dark);
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .quick-dock-btn.btn-buy-now {
+            background: linear-gradient(135deg, var(--orange-accent) 0%, #ff8c00 100%);
+            border-color: var(--orange-accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(255, 101, 0, 0.3);
+        }
+
+        .quick-dock-btn.btn-buy-now i {
+            color: var(--white);
+        }
+
+        .quick-dock-btn.btn-buy-now:hover {
+            background: linear-gradient(135deg, var(--orange-hover) 0%, #ff5100 100%);
+            border-color: var(--orange-hover);
+            color: var(--white);
+            transform: translateX(-8px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 101, 0, 0.6);
+        }
+
+        .quick-dock-btn.btn-buy-now:hover i {
+            color: var(--white);
+            transform: scale(1.2) translateY(-2px);
+        }
+
+        /* Desktop position adjustments */
+        @media (min-width: 768px) {
+            .quick-nav-dock {
+                bottom: 30px;
+                right: 20px;
+                gap: 10px;
+                max-width: 200px;
+            }
+
+            .quick-dock-btn {
+                padding: 10px 16px;
+                font-size: 0.78rem;
+                border-radius: 25px;
+            }
+
+            .quick-dock-btn i {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 
@@ -2048,7 +2154,7 @@
     </section>
 
     <!-- 5. BẢNG SIZE SECTION -->
-    <section class="sizing section-padding">
+    <section id="sizing" class="sizing section-padding">
         <div class="container">
             <h2>HƯỚNG DẪN CHỌN SIZE VÀ PHÂN LOẠI</h2>
             <div class="sizing-box">
@@ -2112,7 +2218,7 @@
     </section>
 
     <!-- 6. HƯỚNG DẪN SỬ DỤNG SECTION -->
-    <section class="instructions section-padding">
+    <section id="instructions" class="instructions section-padding">
         <div class="container">
             <h2>HƯỚNG DẪN LẮP ĐẶT & SỬ DỤNG</h2>
 
@@ -2179,7 +2285,7 @@
     </section>
 
     <!-- 7. ĐÁNH GIÁ KHÁCH HÀNG SECTION -->
-    <section class="reviews section-padding">
+    <section id="reviews" class="reviews section-padding">
         <div class="container">
             <h2>ĐÁNH GIÁ THỰC TẾ TỪ KHÁCH HÀNG</h2>
             <div class="reviews-grid">
@@ -2545,7 +2651,7 @@
     </section>
 
     <!-- 8. CHÍNH SÁCH & CAM KẾT SECTION -->
-    <section class="policies section-padding">
+    <section id="policies" class="policies section-padding">
         <div class="container">
             <h2>CHÍNH SÁCH MUA HÀNG VÀ CAM KẾT</h2>
             <div class="policy-grid">
@@ -2629,6 +2735,28 @@
         });
     </script>
 
+    <!-- FLOATING QUICK NAVIGATION DOCK -->
+    <div class="quick-nav-dock" id="quickNavDock">
+        <a href="AFFILIATE_LINK_HERE" class="quick-dock-btn btn-buy-now">
+            <i class="fa-solid fa-cart-shopping"></i> <span>MUA NGAY ƯU ĐÃI</span>
+        </a>
+        <a href="#features" class="quick-dock-btn" onclick="scrollToSection(event, '#features')">
+            <i class="fa-solid fa-medal"></i> <span>LỢI ÍCH</span>
+        </a>
+        <a href="#sizing" class="quick-dock-btn" onclick="scrollToSection(event, '#sizing')">
+            <i class="fa-solid fa-ruler-combined"></i> <span>CHỌN SIZE</span>
+        </a>
+        <a href="#instructions" class="quick-dock-btn" onclick="scrollToSection(event, '#instructions')">
+            <i class="fa-solid fa-gears"></i> <span>LẮP ĐẶT</span>
+        </a>
+        <a href="#reviews" class="quick-dock-btn" onclick="scrollToSection(event, '#reviews')">
+            <i class="fa-solid fa-star"></i> <span>KHÁCH HÀNG ĐÁNH GIÁ</span>
+        </a>
+        <a href="#policies" class="quick-dock-btn" onclick="scrollToSection(event, '#policies')">
+            <i class="fa-solid fa-handshake-angle"></i> <span>CAM KẾT</span>
+        </a>
+    </div>
+
     <!-- Lightbox Modal for Review Media -->
     <div id="mediaLightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -2677,6 +2805,18 @@
             const targetSection = document.getElementById('features');
             if (targetSection) {
                 targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Floating menu navigation controls
+        function scrollToSection(event, targetSelector) {
+            event.preventDefault();
+            const targetElement = document.querySelector(targetSelector);
+            if (targetElement) {
+                targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
