@@ -157,6 +157,122 @@
             box-shadow: 0 12px 24px -5px rgba(224, 83, 0, 0.6);
         }
 
+        /* Custom Hero CTA Button */
+        .btn-hero-cta {
+            background: linear-gradient(135deg, var(--orange-accent) 0%, #FF8F00 100%);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 16px 36px;
+            border-radius: 50px;
+            /* Pill-shaped button for modern feel */
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(255, 101, 0, 0.4), 0 0 0 0px rgba(0, 173, 181, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            z-index: 1;
+            animation: cta-pulse 2.2s infinite;
+        }
+
+        /* Shining Sweep Effect */
+        .btn-hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            z-index: -1;
+            animation: shine-sweep 3.5s infinite ease-in-out;
+        }
+
+        @keyframes shine-sweep {
+            0% {
+                left: -150%;
+            }
+
+            50% {
+                left: 150%;
+            }
+
+            100% {
+                left: 150%;
+            }
+        }
+
+        @keyframes cta-pulse {
+            0% {
+                box-shadow: 0 10px 25px rgba(255, 101, 0, 0.4), 0 0 0 0px rgba(0, 173, 181, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 10px 25px rgba(255, 101, 0, 0.4), 0 0 0 15px rgba(0, 173, 181, 0);
+            }
+
+            100% {
+                box-shadow: 0 10px 25px rgba(255, 101, 0, 0.4), 0 0 0 0px rgba(0, 173, 181, 0);
+            }
+        }
+
+        .btn-hero-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, #FF8F00 0%, var(--orange-accent) 100%);
+            border-color: var(--white);
+            box-shadow: 0 15px 30px rgba(255, 101, 0, 0.6), 0 0 20px rgba(0, 173, 181, 0.3);
+        }
+
+        .btn-hero-cta:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+
+        /* Icon animations inside CTA button */
+        .btn-hero-cta .cta-fan-icon {
+            font-size: 1.25rem;
+            color: var(--blue-light);
+            animation: spin-slow 8s linear infinite;
+            transition: transform var(--transition-normal);
+        }
+
+        .btn-hero-cta:hover .cta-fan-icon {
+            animation: spin-slow 1.5s linear infinite;
+            /* Spin rapidly on hover representing fan powering up */
+            color: var(--white);
+        }
+
+        .btn-hero-cta .cta-chevron-icon {
+            font-size: 0.95rem;
+            transition: transform var(--transition-normal);
+            animation: bounce-down 1.5s infinite;
+        }
+
+        .btn-hero-cta:hover .cta-chevron-icon {
+            transform: translateY(3px);
+            animation: none;
+        }
+
+        @keyframes bounce-down {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(3px);
+            }
+        }
+
         .btn-secondary {
             background-color: #25D366;
             /* Màu xanh lá đặc trưng của chat/zalo/messenger */
@@ -203,13 +319,15 @@
 
         /* 1. HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, #EBF8FC 0%, #D8F2FA 50%, #C4EDFA 100%);
+            color: var(--navy-dark);
             padding: 80px 0 60px;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
+        /* Ambient ice-cool blue lighting glow */
         .hero::before {
             content: '';
             position: absolute;
@@ -217,8 +335,118 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(0, 173, 181, 0.15) 0%, transparent 50%);
+            background: radial-gradient(circle at 80% 20%, rgba(0, 173, 181, 0.3) 0%, transparent 60%);
             pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Subtle rotating cool wind mist effect */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 173, 181, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: ice-glow-rotate 25s linear infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        @keyframes ice-glow-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Gentle wind lines animation in hero */
+        .hero-wind-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 173, 181, 0.4), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            /* Place above the background but below text/video */
+            opacity: 0;
+        }
+
+        .wind-line-1 {
+            top: 20%;
+            left: -100px;
+            width: 150px;
+            animation: blow-wind-gentle-1 8s infinite linear;
+        }
+
+        .wind-line-2 {
+            top: 45%;
+            left: -150px;
+            width: 250px;
+            animation: blow-wind-gentle-2 12s infinite linear;
+            animation-delay: 2s;
+        }
+
+        .wind-line-3 {
+            top: 75%;
+            left: -120px;
+            width: 200px;
+            animation: blow-wind-gentle-1 10s infinite linear;
+            animation-delay: 4s;
+        }
+
+        @keyframes blow-wind-gentle-1 {
+            0% {
+                transform: translateX(0) translateY(0) scaleY(1);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateX(50vw) translateY(-10px) scaleY(1.5);
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateX(110vw) translateY(5px) scaleY(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes blow-wind-gentle-2 {
+            0% {
+                transform: translateX(0) translateY(0) scaleY(1.2);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateX(55vw) translateY(15px) scaleY(0.8);
+                opacity: 0.5;
+            }
+
+            85% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateX(115vw) translateY(-5px) scaleY(1.2);
+                opacity: 0;
+            }
         }
 
         .hero-grid {
@@ -267,7 +495,7 @@
             font-size: 2.2rem;
             margin-bottom: 20px;
             font-weight: 800;
-            color: var(--white);
+            color: var(--navy-dark);
             text-transform: uppercase;
         }
 
@@ -285,7 +513,7 @@
 
         .hero-desc {
             font-size: 1.1rem;
-            color: rgba(248, 250, 252, 0.85);
+            color: var(--navy-light);
             margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
@@ -337,7 +565,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
-            color: rgba(248, 250, 252, 0.9);
+            color: var(--navy-medium);
             font-weight: 600;
         }
 
@@ -381,76 +609,45 @@
             font-size: 1rem;
         }
 
-        /* Rendered product graphic via pure CSS / Styled Mockup */
-        .jacket-mockup {
+        /* 9:16 Video Box for Product Promo */
+        .video-promo-box {
             width: 100%;
-            max-width: 350px;
-            aspect-ratio: 1;
+            max-width: 320px;
+            /* Tỉ lệ 9:16 tối ưu cho chiều rộng 320px */
+            aspect-ratio: 9 / 16;
             background: radial-gradient(circle, var(--navy-light) 0%, var(--navy-dark) 100%);
-            border-radius: 50%;
+            border-radius: var(--radius-lg);
             position: relative;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 173, 181, 0.3);
+            box-shadow: var(--shadow-lg), 0 0 35px rgba(0, 173, 181, 0.25);
             border: 4px solid var(--navy-light);
+            transition: all var(--transition-normal);
         }
 
-        .jacket-mockup-content {
-            text-align: center;
-            color: var(--white);
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .video-promo-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue-cool);
+            box-shadow: var(--shadow-lg), 0 0 45px rgba(0, 173, 181, 0.45);
         }
 
-        .jacket-mockup-content i {
-            font-size: 5rem;
-            color: var(--blue-cool);
-            margin-bottom: 15px;
-            animation: spin-slow 10s linear infinite;
+        .video-promo-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .jacket-mockup-content h4 {
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--white);
-        }
-
-        .jacket-mockup-content p {
-            font-size: 0.9rem;
-            color: var(--blue-cool);
-            font-weight: 700;
-            margin-top: 5px;
-        }
-
-        .cool-wind-line {
+        /* Ambient glow for the video container */
+        .video-ambient-glow {
             position: absolute;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--blue-cool), transparent);
-            border-radius: 2px;
-            animation: flow-wind 3s linear infinite;
-        }
-
-        .line-1 {
-            top: 25%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-
-        .line-2 {
-            top: 50%;
-            right: -15%;
-            animation-delay: 1s;
-        }
-
-        .line-3 {
-            bottom: 20%;
-            left: -5%;
-            animation-delay: 2s;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0, 173, 181, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* 2. VẤN ĐỀ SECTION */
@@ -472,42 +669,96 @@
             gap: 25px;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 576px) {
             .problem-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .problem-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
         .problem-card {
-            background-color: var(--gray-100);
-            border-top: 4px solid #DF2E38;
-            /* Màu đỏ báo động vấn đề */
-            padding: 30px 25px;
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            background-color: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
-            transition: transform var(--transition-normal);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-normal);
         }
 
         .problem-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(223, 46, 56, 0.3);
+        }
+
+        .problem-img-box {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--gray-100);
+        }
+
+        .problem-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .problem-card:hover .problem-img-box img {
+            transform: scale(1.08);
+        }
+
+        .problem-card-body {
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .problem-header-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--gray-200);
+            padding-bottom: 12px;
         }
 
         .problem-icon {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             color: #DF2E38;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(223, 46, 56, 0.08);
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .problem-title {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--navy-dark);
+            margin: 0;
+            line-height: 1.3;
+            text-transform: uppercase;
         }
 
-        .problem-card p {
-            font-size: 0.95rem;
+        .problem-card-body p {
+            font-size: 0.92rem;
             color: var(--gray-700);
+            line-height: 1.55;
         }
 
         /* 3. GIẢI PHÁP SECTION */
@@ -1345,6 +1596,11 @@
 
     <!-- 1. HERO SECTION -->
     <header class="hero">
+        <!-- Hiệu ứng gió mát nhẹ nhàng -->
+        <div class="hero-wind-line wind-line-1"></div>
+        <div class="hero-wind-line wind-line-2"></div>
+        <div class="hero-wind-line wind-line-3"></div>
+
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
@@ -1353,7 +1609,7 @@
                     </div>
                     <h1 class="hero-title">
                         NẮNG NÓNG 40°C - LAO ĐỘNG NHƯ THIÊU ĐỐT?
-                        <span>BẬT QUẠT LÀ MÁT LẠNH 12H LIÊN TỤC!</span>
+                        <span>BẬT QUẠT LÀ MÁT LẠNH LÊN ĐẾN 12H LIÊN TỤC!</span>
                     </h1>
                     <p class="hero-desc">
                         Bảo bối cứu cánh cho AE công nhân, thợ hàn, đầu bếp, shipper... làm việc ngoài trời nắng gắt. Hạ
@@ -1361,9 +1617,10 @@
                     </p>
 
                     <div class="hero-cta">
-                        <a href="AFFILIATE_LINK_HERE" class="btn btn-primary">
-                            <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i> ĐẶT MUA NGAY - ƯU ĐÃI
-                            40%
+                        <a href="#features" class="btn-hero-cta" onclick="smoothScrollToFeatures(event)">
+                            <i class="fa-solid fa-fan cta-fan-icon"></i>
+                            <span>Khám phá lợi ích & ưu đãi</span>
+                            <i class="fa-solid fa-chevron-down cta-chevron-icon"></i>
                         </a>
                     </div>
 
@@ -1386,16 +1643,16 @@
                         <span>659K</span>
                         <div style="font-size: 0.55rem; text-decoration: line-through; opacity: 0.8;">Gốc 800K</div>
                     </div>
-                    <!-- CSS Mockup represent the AC jacket visually -->
-                    <div class="jacket-mockup">
-                        <div class="cool-wind-line line-1"></div>
-                        <div class="cool-wind-line line-2"></div>
-                        <div class="cool-wind-line line-3"></div>
-                        <div class="jacket-mockup-content">
-                            <i class="fa-solid fa-fan"></i>
-                            <h4>ÁO ĐIỀU HÒA</h4>
-                            <p><i class="fa-solid fa-bolt" style="margin-right: 4px;"></i> PIN QUẠT 25V SIÊU KHỎE</p>
-                        </div>
+                    <!-- Ambient Glow Behind Video -->
+                    <div class="video-ambient-glow"></div>
+
+                    <!-- 9:16 Video Box for Product Promo -->
+                    <div class="video-promo-box">
+                        <!-- Video quảng cáo tự động phát lặp lại tắt tiếng liên tục -->
+                        <video id="promoVideo" autoplay muted loop playsinline>
+                            <source src="assets/videos/video-ao-1.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video HTML5.
+                        </video>
                     </div>
                 </div>
             </div>
@@ -1411,29 +1668,74 @@
                 mệt mỏi mà còn gây ra nhiều hệ lụy nghiêm trọng:
             </p>
             <div class="problem-grid">
+                <!-- Vấn đề 1: Sốc nhiệt & Kiệt sức -->
                 <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fa-solid fa-temperature-arrow-up"></i>
+                    <div class="problem-img-box">
+                        <img src="assets/images/problems/heat_exhausted_worker.png"
+                            alt="Sốc nhiệt kiệt sức do nắng nóng">
                     </div>
-                    <h3 class="problem-title">NẮNG NÓNG KIỆT SỨC</h3>
-                    <p>Sức nóng ngoài trời 40°C hay hơi nóng từ lò nung, máy hàn làm AE nhanh chóng mất nước, kiệt sức,
-                        say nắng, ảnh hưởng nghiêm trọng tới sức khỏe.</p>
+                    <div class="problem-card-body">
+                        <div class="problem-header-row">
+                            <div class="problem-icon">
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
+                            </div>
+                            <h3 class="problem-title">SỐC NHIỆT & KIỆT SỨC</h3>
+                        </div>
+                        <p>Nhiệt độ ngoài trời vượt ngưỡng 40°C cực kỳ nguy hiểm. Người lao động dễ bị mất nước nhanh,
+                            suy kiệt thể lực, hoa mắt và đối mặt nguy cơ đột quỵ do sốc nhiệt.</p>
+                    </div>
                 </div>
+
+                <!-- Vấn đề 2: Mồ hôi, dị ứng -->
                 <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fa-solid fa-droplet-slash"></i>
+                    <div class="problem-img-box">
+                        <img src="assets/images/problems/sweat_wet_uniform.png" alt="Mồ hôi ướt đẫm ngứa ngáy rôm sảy">
                     </div>
-                    <h3 class="problem-title">MỒ HÔI ƯỚT ĐẪM</h3>
-                    <p>Mồ hôi ra liên tục làm quần áo dính chặt, gây ngứa ngáy, nổi mẩn, kháng khuẩn kém gây mùi cơ thể
-                        khó chịu suốt cả ngày làm việc.</p>
+                    <div class="problem-card-body">
+                        <div class="problem-header-row">
+                            <div class="problem-icon">
+                                <i class="fa-solid fa-droplet-slash"></i>
+                            </div>
+                            <h3 class="problem-title">MỒ HÔI & DỊ ỨNG DA</h3>
+                        </div>
+                        <p>Quần áo bảo hộ dày dính chặt lấy cơ thể do mồ hôi tuôn liên tục. Gây ngứa ngáy, rôm sảy, nổi
+                            mẩn đỏ và phát sinh vi khuẩn gây mùi khó chịu suốt cả ngày dài.</p>
+                    </div>
                 </div>
+
+                <!-- Vấn đề 3: Mất tập trung & Nguy hiểm -->
                 <div class="problem-card">
-                    <div class="problem-icon">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div class="problem-img-box">
+                        <img src="assets/images/problems/dizzy_worker_danger.png" alt="Mất tập trung tai nạn lao động">
                     </div>
-                    <h3 class="problem-title">MẤT TẬP TRUNG, NGUY HIỂM</h3>
-                    <p>Cơ thể nóng bức làm đầu óc uể oải, mất tập trung khi làm việc cao độ. Rất dễ dẫn tới sai sót kỹ
-                        thuật hoặc tai nạn lao động đáng tiếc.</p>
+                    <div class="problem-card-body">
+                        <div class="problem-header-row">
+                            <div class="problem-icon">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <h3 class="problem-title">MẤT TẬP TRUNG, TAI NẠN</h3>
+                        </div>
+                        <p>Thời tiết oi bức làm đầu óc uể oải, nhức đầu, giảm khả năng tập trung khi thao tác máy móc.
+                            Đây là nguyên nhân hàng đầu dẫn đến các tai nạn lao động đáng tiếc.</p>
+                    </div>
+                </div>
+
+                <!-- Vấn đề 4: Giảm năng suất & Thu nhập -->
+                <div class="problem-card">
+                    <div class="problem-img-box">
+                        <img src="assets/images/problems/shipper_hot_sun.png"
+                            alt="Năng suất giảm sút thu nhập ảnh hưởng">
+                    </div>
+                    <div class="problem-card-body">
+                        <div class="problem-header-row">
+                            <div class="problem-icon">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <h3 class="problem-title">NĂNG SUẤT & THU NHẬP GIẢM</h3>
+                        </div>
+                        <p>Nóng bức kéo dài buộc người lao động phải nghỉ tay liên tục để hồi sức. Thời gian làm việc
+                            giảm sút làm ảnh hưởng trực tiếp tới sản lượng và tiến độ thu nhập.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1483,7 +1785,7 @@
     </section>
 
     <!-- 4. LỢI ÍCH NỔI BẬT SECTION -->
-    <section class="features section-padding">
+    <section id="features" class="features section-padding">
         <div class="container">
             <h2>LỢI ÍCH NỔI BẬT VƯỢT TRỘI</h2>
             <div class="feature-grid">
@@ -2049,42 +2351,6 @@
         </div>
     </section>
 
-    <!-- 9. CTA CUỐI TRANG & FOOTER -->
-    <section class="final-cta section-padding">
-        <div class="container">
-            <div class="final-cta-box">
-                <span class="badge-hot">Ưu đãi có hạn</span>
-                <h3>SỞ HỮU NGAY ÁO ĐIỀU HÒA NHẬT BẢN</h3>
-                <p>Đập tan cái nóng bức mùa hè, bảo vệ sức khỏe khi làm việc ngoài trời nóng gắt.</p>
-
-                <div class="final-price-box">
-                    <span class="original-price">800.000đ - 1.200.000đ</span>
-                    <span class="discount-price">659.000đ - 839.000đ</span>
-                </div>
-
-                <div class="final-cta-buttons">
-                    <a href="AFFILIATE_LINK_HERE" class="btn btn-primary">
-                        <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i> 🛒 Mua Ngay — Giao Hàng
-                        Toàn Quốc
-                    </a>
-                    <a href="AFFILIATE_LINK_HERE" class="btn btn-secondary">
-                        <i class="fa-solid fa-comment-dots" style="margin-right: 8px;"></i> 💬 Nhắn Tin Với Shop
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">
-                ÁO ĐIỀU HÒA <span>NHẬT BẢN</span>
-            </div>
-            <p>Nhập khẩu và phân phối sản phẩm chính hãng công nghệ Nhật Bản.</p>
-            <p style="font-size: 0.8rem; margin-top: 20px;">© 2026 Áo Điều Hòa Nhật Bản. Bảo lưu mọi quyền.</p>
-        </div>
-    </footer>
 
     <!-- 10. STICKY CTA BOTTOM BAR ON MOBILE -->
     <div class="sticky-cta-bar" id="stickyCtaBar">
@@ -2152,6 +2418,18 @@
             var lightboxVideo = document.getElementById('lightboxVideo');
             lightbox.style.display = 'none';
             lightboxVideo.pause();
+        }
+
+        // Smooth scroll to features section
+        function smoothScrollToFeatures(event) {
+            event.preventDefault();
+            const targetSection = document.getElementById('features');
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     </script>
 </body>
