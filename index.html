@@ -72,12 +72,14 @@
             color: var(--text-dark);
             background-color: var(--gray-100);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body {
             overflow-x: hidden;
-            padding-bottom: 70px;
-            /* Chừa khoảng trống cho sticky CTA trên mobile */
+            width: 100%;
+            padding-bottom: 130px;
+            /* Chừa khoảng trống cho sticky CTA và quick nav dock trên mobile */
         }
 
         @media (min-width: 768px) {
@@ -1706,41 +1708,56 @@
             position: fixed;
             z-index: 1000;
             display: flex;
-            flex-direction: column;
             gap: 8px;
             font-family: 'Montserrat', sans-serif;
-            bottom: 80px;
-            /* Above mobile sticky CTA bar */
-            right: 12px;
-            max-width: 220px;
+            
+            /* Mobile default: Horizontal scrolling bar at the bottom */
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%;
+            left: 0;
+            right: 0;
+            bottom: 60px; /* Right above the sticky CTA bar */
+            padding: 8px 12px;
+            background: rgba(11, 25, 44, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: none;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+            
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .quick-nav-dock::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
         }
 
         .quick-dock-btn {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 8px;
-            background: rgba(11, 25, 44, 0.9);
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--white);
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 0.72rem;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.7rem;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: all var(--transition-normal);
-            backdrop-filter: blur(8px);
             text-transform: uppercase;
-            white-space: normal;
-            line-height: 1.25;
-            text-align: left;
+            white-space: nowrap; /* Keep items in one line for horizontal scroll */
+            flex-shrink: 0;
         }
 
         .quick-dock-btn i {
             color: var(--blue-cool);
-            font-size: 0.85rem;
-            width: 14px;
+            font-size: 0.8rem;
+            width: 12px;
             text-align: center;
             flex-shrink: 0;
             transition: transform var(--transition-fast) ease;
@@ -1753,8 +1770,8 @@
         .quick-dock-btn:hover {
             background: linear-gradient(135deg, var(--blue-cool) 0%, #00d2fc 100%);
             color: var(--navy-dark);
-            transform: translateX(-8px) scale(1.03);
-            box-shadow: 0 6px 20px rgba(0, 173, 181, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
             border-color: var(--blue-cool);
         }
 
@@ -1767,7 +1784,7 @@
             background: linear-gradient(135deg, var(--orange-accent) 0%, #ff8c00 100%);
             border-color: var(--orange-accent);
             color: var(--white);
-            box-shadow: 0 4px 12px rgba(255, 101, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(255, 101, 0, 0.2);
         }
 
         .quick-dock-btn.btn-buy-now i {
@@ -1778,8 +1795,8 @@
             background: linear-gradient(135deg, var(--orange-hover) 0%, #ff5100 100%);
             border-color: var(--orange-hover);
             color: var(--white);
-            transform: translateX(-8px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(255, 101, 0, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 101, 0, 0.4);
         }
 
         .quick-dock-btn.btn-buy-now:hover i {
@@ -1787,23 +1804,44 @@
             transform: scale(1.2) translateY(-2px);
         }
 
-        /* Desktop position adjustments */
+        /* Desktop position adjustments: vertical sidebar on the right */
         @media (min-width: 768px) {
             .quick-nav-dock {
-                bottom: 30px;
+                flex-direction: column;
+                overflow-x: visible;
+                width: auto;
+                left: auto;
                 right: 20px;
-                gap: 10px;
+                bottom: 30px;
+                padding: 0;
+                background: transparent;
+                backdrop-filter: none;
+                border-top: none;
                 max-width: 200px;
+                box-shadow: none;
             }
-
+            
             .quick-dock-btn {
+                background: rgba(11, 25, 44, 0.9);
                 padding: 10px 16px;
                 font-size: 0.78rem;
                 border-radius: 25px;
+                gap: 8px;
             }
-
+            
             .quick-dock-btn i {
                 font-size: 0.95rem;
+                width: 14px;
+            }
+            
+            .quick-dock-btn:hover {
+                transform: translateX(-8px) scale(1.03);
+                box-shadow: 0 6px 20px rgba(0, 173, 181, 0.5);
+            }
+            
+            .quick-dock-btn.btn-buy-now:hover {
+                transform: translateX(-8px) scale(1.05);
+                box-shadow: 0 6px 25px rgba(255, 101, 0, 0.6);
             }
         }
     </style>
@@ -2690,7 +2728,7 @@
             <i class="fa-solid fa-comment"></i> Chat
         </a>
         <a href="https://s.shopee.vn/BRnGEryMk" class="btn btn-buy">
-            🛒 MUA NGAY (659K)
+            🛒 MUA NGAY (CHỈ 600K)
         </a>
     </div>
 
