@@ -789,6 +789,7 @@
         .solution-slider-container {
             width: 100%;
             max-width: 450px;
+            min-width: 0; /* Fix CSS Grid child stretching bug with sliders */
             /* Định dạng hình vuông 1:1 nổi bật hiển thị ảnh chuẩn */
             margin: 0 auto;
             position: relative;
@@ -2727,6 +2728,9 @@
         // Swiper Slider Initialization
         const swiper = new Swiper('.solutionSwiper', {
             loop: true,
+            slidesPerView: 1,
+            observer: true,
+            observeParents: true,
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
