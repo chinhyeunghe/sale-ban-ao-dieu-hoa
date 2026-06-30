@@ -1820,6 +1820,165 @@
                 box-shadow: 0 6px 25px rgba(255, 101, 0, 0.6);
             }
         }
+
+        /* PRICING & COMBOS SECTION */
+        .pricing-section {
+            margin-top: 40px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .pricing-card {
+            background-color: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition-normal);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--orange-accent);
+            box-shadow: var(--shadow-lg), 0 0 15px rgba(255, 101, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .pricing-card.featured {
+                transform: scale(1.03);
+            }
+        }
+
+        .pricing-card.featured::before {
+            content: 'BÁN CHẠY NHẤT';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--orange-accent);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 15px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-sm);
+            z-index: 5;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue-cool);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 768px) {
+            .pricing-card.featured:hover {
+                transform: translateY(-5px) scale(1.03);
+                border-color: var(--orange-accent);
+                box-shadow: 0 15px 30px rgba(255, 101, 0, 0.3);
+            }
+        }
+
+        .pricing-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .pricing-price-box {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--gray-200);
+            padding-bottom: 20px;
+        }
+
+        .pricing-old-price {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .pricing-new-price {
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--orange-accent);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .pricing-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .pricing-features-list li {
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--gray-700);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .pricing-features-list li i {
+            color: #25D366; /* Green checkmark */
+            font-size: 0.95rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all var(--transition-normal);
+        }
+
+        .pricing-btn-shopee {
+            background-color: var(--orange-accent);
+            color: var(--white);
+            border: 1px solid var(--orange-accent);
+        }
+
+        .pricing-btn-shopee:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-orange);
+        }
     </style>
 </head>
 
@@ -1871,8 +2030,8 @@
                 <div class="hero-image-wrapper">
                     <div class="product-badge-overlay">
                         CHỈ TỪ
-                        <span>600K</span>
-                        <div style="font-size: 0.55rem; text-decoration: line-through; opacity: 0.8;">Gốc 800K</div>
+                        <span>659K</span>
+                        <div style="font-size: 0.55rem; text-decoration: line-through; opacity: 0.8;">Gốc 850K</div>
                     </div>
                     <!-- Ambient Glow Behind Video -->
                     <div class="video-ambient-glow"></div>
@@ -2207,25 +2366,79 @@
                         hơn 1 size so với bảng quy đổi thông thường.</p>
                 </div>
 
-                <div style="margin-top: 30px;">
-                    <h4
-                        style="color: var(--navy-dark); font-size: 1.2rem; margin-bottom: 15px; border-left: 4px solid var(--orange-accent); padding-left: 10px;">
-                        CÁC PHÂN LOẠI LỰA CHỌN:</h4>
-                    <ul style="list-style: none; padding-left: 5px;">
-                        <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
-                                style="color: var(--orange-accent); margin-right: 8px;"></i> Màu Xanh + Bộ Pin Quạt</li>
-                        <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
-                                style="color: var(--orange-accent); margin-right: 8px;"></i> Màu Xám + Bộ Pin Quạt</li>
-                        <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
-                                style="color: var(--orange-accent); margin-right: 8px;"></i> Combo 2 Màu Xanh + Bộ Pin
-                            Quạt</li>
-                        <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
-                                style="color: var(--orange-accent); margin-right: 8px;"></i> Combo 2 Màu Xám + Bộ Pin
-                            Quạt</li>
-                        <li style="margin-bottom: 8px; font-weight: 600;"><i class="fa-solid fa-caret-right"
-                                style="color: var(--orange-accent); margin-right: 8px;"></i> 1 Áo Xanh + 1 Áo Xám + 1 Bộ
-                            Phụ Kiện</li>
-                    </ul>
+                <!-- BẢNG GIÁ VÀ CÁC PHÂN LOẠI ƯU ĐÃI -->
+                <div class="pricing-section">
+                    <h4 style="color: var(--navy-dark); font-size: 1.25rem; margin-bottom: 20px; border-left: 4px solid var(--orange-accent); padding-left: 10px; text-transform: uppercase;">
+                        BẢNG GIÁ COMBO ƯU ĐÃI HÔM NAY:
+                    </h4>
+                    
+                    <div class="pricing-grid">
+                        <!-- Gói 1: Bộ 1 Áo Đầy Đủ -->
+                        <div class="pricing-card">
+                            <div>
+                                <div class="pricing-title">BỘ 1 ÁO TIÊU CHUẨN</div>
+                                <div class="pricing-price-box">
+                                    <span class="pricing-old-price">Gốc: 850.000₫</span>
+                                    <span class="pricing-new-price">659.000₫</span>
+                                </div>
+                                <ul class="pricing-features-list">
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo điều hòa Nhật Bản</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Chọn màu: <strong>Xanh hoặc Xám</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Đầy đủ phụ kiện dây cáp + củ sạc</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Bảo hành 1 đổi 1 trong 10 ngày</li>
+                                </ul>
+                            </div>
+                            <a href="https://s.shopee.vn/BRnGEryMk" class="pricing-btn pricing-btn-shopee">
+                                🛒 MUA BỘ 1 ÁO (659K)
+                            </a>
+                        </div>
+
+                        <!-- Gói 2: Combo 2 Áo Đồng Màu (Bán Chạy Nhất) -->
+                        <div class="pricing-card featured">
+                            <div>
+                                <div class="pricing-title">COMBO 2 ÁO ĐỒNG MÀU</div>
+                                <div class="pricing-price-box">
+                                    <span class="pricing-old-price">Gốc: 1.200.000₫</span>
+                                    <span class="pricing-new-price">839.000₫</span>
+                                </div>
+                                <ul class="pricing-features-list">
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Áo điều hòa Nhật Bản</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Phân loại: <strong>2 Xanh hoặc 2 Xám</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Phù hợp đổi áo giặt khi làm việc</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Bảo hành 12 tháng chính hãng</li>
+                                </ul>
+                            </div>
+                            <a href="https://s.shopee.vn/BRnGEryMk" class="pricing-btn pricing-btn-shopee" style="background: linear-gradient(135deg, var(--orange-accent) 0%, #ff8c00 100%);">
+                                🛒 MUA COMBO ĐỒNG MÀU (839K)
+                            </a>
+                        </div>
+
+                        <!-- Gói 3: Combo Đổi Màu -->
+                        <div class="pricing-card">
+                            <div>
+                                <div class="pricing-title">COMBO ĐỔI MÀU TIỆN LỢI</div>
+                                <div class="pricing-price-box">
+                                    <span class="pricing-old-price">Gốc: 1.200.000₫</span>
+                                    <span class="pricing-new-price">839.000₫</span>
+                                </div>
+                                <ul class="pricing-features-list">
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo Xanh + 1 Áo Xám</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Đầy đủ phụ kiện dây cáp + củ sạc</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Dễ dàng thay đổi màu sắc mỗi ngày</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Bảo hành 12 tháng chính hãng</li>
+                                </ul>
+                            </div>
+                            <a href="https://s.shopee.vn/BRnGEryMk" class="pricing-btn pricing-btn-shopee">
+                                🛒 MUA COMBO ĐỒNG MÀU (839K)
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2701,7 +2914,7 @@
     <!-- 10. STICKY CTA BOTTOM BAR ON MOBILE -->
     <div class="sticky-cta-bar" id="stickyCtaBar">
         <a href="https://s.shopee.vn/BRnGEryMk" class="btn btn-buy">
-            🛒 MUA NGAY (CHỈ 600K)
+            🛒 MUA NGAY (CHỈ TỪ 659K)
         </a>
     </div>
 
