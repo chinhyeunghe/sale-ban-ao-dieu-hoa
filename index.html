@@ -1979,6 +1979,117 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-orange);
         }
+
+        /* FLOATING CHAT BUBBLE (BOTTOM LEFT) */
+        .floating-chat-bubble {
+            position: fixed;
+            z-index: 1000;
+            bottom: 72px; /* Alignment on mobile, matches quick nav dock */
+            left: 12px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #00C6FF 0%, #0072FF 50%, #B900B4 100%); /* Premium Messenger gradient */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.45rem;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: float-bubble 3s ease-in-out infinite, pulse-glow 2s infinite;
+        }
+
+        .floating-chat-bubble i {
+            transition: transform var(--transition-fast);
+        }
+
+        .floating-chat-bubble:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
+            color: var(--white);
+        }
+
+        /* Red Notification Badge */
+        .chat-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #FF3B30;
+            color: var(--white);
+            font-size: 0.68rem;
+            font-weight: 800;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Tooltip text */
+        .chat-tooltip {
+            position: absolute;
+            left: 56px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            background-color: var(--navy-dark);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-fast);
+            transform-origin: left center;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-chat-bubble:hover .chat-tooltip {
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* Floating Animation */
+        @keyframes float-bubble {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 114, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 114, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 114, 255, 0);
+            }
+        }
+
+        /* Desktop position adjustment */
+        @media (min-width: 768px) {
+            .floating-chat-bubble {
+                bottom: 30px;
+                left: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 1.7rem;
+            }
+            .chat-tooltip {
+                left: 66px;
+            }
+        }
     </style>
 </head>
 
@@ -2983,6 +3094,13 @@
             <i class="fa-solid fa-handshake-angle"></i> <span>CAM KẾT</span>
         </a>
     </div>
+
+    <!-- FLOATING CHAT BUBBLE (Messenger) -->
+    <a href="https://m.me/YOUR_PAGE_ID_HERE" class="floating-chat-bubble" id="floatingChatBubble" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-facebook-messenger"></i>
+        <span class="chat-tooltip">Chat hỏi đáp tư vấn</span>
+        <span class="chat-badge">1</span>
+    </a>
 
     <!-- Lightbox Modal for Review Media -->
     <div id="mediaLightbox" class="lightbox" onclick="closeLightbox()">
