@@ -789,7 +789,8 @@
         .solution-slider-container {
             width: 100%;
             max-width: 450px;
-            min-width: 0; /* Fix CSS Grid child stretching bug with sliders */
+            min-width: 0;
+            /* Fix CSS Grid child stretching bug with sliders */
             /* Định dạng hình vuông 1:1 nổi bật hiển thị ảnh chuẩn */
             margin: 0 auto;
             position: relative;
@@ -1712,7 +1713,8 @@
             flex-direction: column;
             gap: 6px;
             font-family: 'Montserrat', sans-serif;
-            bottom: 72px; /* Just above the single button sticky CTA bar */
+            bottom: 72px;
+            /* Just above the single button sticky CTA bar */
             right: 12px;
             max-width: 160px;
         }
@@ -1797,24 +1799,24 @@
                 gap: 10px;
                 max-width: 200px;
             }
-            
+
             .quick-dock-btn {
                 padding: 10px 16px;
                 font-size: 0.78rem;
                 border-radius: 25px;
                 gap: 8px;
             }
-            
+
             .quick-dock-btn i {
                 font-size: 0.95rem;
                 width: 14px;
             }
-            
+
             .quick-dock-btn:hover {
                 transform: translateX(-8px) scale(1.03);
                 box-shadow: 0 6px 20px rgba(0, 173, 181, 0.5);
             }
-            
+
             .quick-dock-btn.btn-buy-now:hover {
                 transform: translateX(-8px) scale(1.05);
                 box-shadow: 0 6px 25px rgba(255, 101, 0, 0.6);
@@ -1946,7 +1948,8 @@
         }
 
         .pricing-features-list li i {
-            color: #25D366; /* Green checkmark */
+            color: #25D366;
+            /* Green checkmark */
             font-size: 0.95rem;
             margin-top: 3px;
             flex-shrink: 0;
@@ -1984,7 +1987,8 @@
         .floating-chat-bubble {
             position: fixed;
             z-index: 1000;
-            bottom: 72px; /* Alignment on mobile, matches quick nav dock */
+            bottom: 72px;
+            /* Alignment on mobile, matches quick nav dock */
             left: 12px;
             width: 48px;
             height: 48px;
@@ -2059,9 +2063,12 @@
 
         /* Floating Animation */
         @keyframes float-bubble {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-6px);
             }
@@ -2071,9 +2078,11 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(0, 114, 255, 0.4);
             }
+
             70% {
                 box-shadow: 0 0 0 10px rgba(0, 114, 255, 0);
             }
+
             100% {
                 box-shadow: 0 0 0 0 rgba(0, 114, 255, 0);
             }
@@ -2088,6 +2097,7 @@
                 height: 56px;
                 font-size: 1.7rem;
             }
+
             .chat-tooltip {
                 left: 66px;
             }
@@ -2161,17 +2171,17 @@
                 background: rgba(30, 46, 70, 0.95) !important;
                 border-color: rgba(255, 255, 255, 0.15) !important;
             }
-            
+
             .quick-dock-btn:hover {
                 background: linear-gradient(135deg, var(--blue-cool) 0%, #00d2fc 100%) !important;
                 color: var(--navy-dark) !important;
             }
-            
+
             .sticky-cta-bar {
                 background-color: var(--white) !important;
                 border-top: 1px solid var(--gray-200) !important;
             }
-            
+
             .timeline::before {
                 background-color: var(--gray-200) !important;
             }
@@ -2998,10 +3008,11 @@
 
                 <!-- BẢNG GIÁ VÀ CÁC PHÂN LOẠI ƯU ĐÃI -->
                 <div class="pricing-section">
-                    <h4 style="color: var(--navy-dark); font-size: 1.25rem; margin-bottom: 20px; border-left: 4px solid var(--orange-accent); padding-left: 10px; text-transform: uppercase;">
+                    <h4
+                        style="color: var(--navy-dark); font-size: 1.25rem; margin-bottom: 20px; border-left: 4px solid var(--orange-accent); padding-left: 10px; text-transform: uppercase;">
                         BẢNG GIÁ COMBO ƯU ĐÃI HÔM NAY:
                     </h4>
-                    
+
                     <div class="pricing-grid">
                         <!-- Gói 1: Bộ 1 Áo Đầy Đủ -->
                         <div class="pricing-card">
@@ -3012,10 +3023,14 @@
                                     <span class="pricing-new-price">659.000₫</span>
                                 </div>
                                 <ul class="pricing-features-list">
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo điều hòa Nhật Bản</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> Chọn màu: <strong>Xanh hoặc Xám</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo điều hòa Nhật Bản</strong>
+                                    </li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Chọn màu: <strong>Xanh hoặc
+                                            Xám</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng
+                                            cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc
+                                            25V</strong></li>
                                     <li><i class="fa-solid fa-circle-check"></i> Đầy đủ phụ kiện dây cáp + củ sạc</li>
                                     <li><i class="fa-solid fa-circle-check"></i> Bảo hành 1 đổi 1 trong 10 ngày</li>
                                 </ul>
@@ -3034,15 +3049,20 @@
                                     <span class="pricing-new-price">839.000₫</span>
                                 </div>
                                 <ul class="pricing-features-list">
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Áo điều hòa Nhật Bản</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> Phân loại: <strong>2 Xanh hoặc 2 Xám</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Áo điều hòa Nhật Bản</strong>
+                                    </li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Phân loại: <strong>2 Xanh hoặc 2
+                                            Xám</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng
+                                            cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc
+                                            25V</strong></li>
                                     <li><i class="fa-solid fa-circle-check"></i> Phù hợp đổi áo giặt khi làm việc</li>
                                     <li><i class="fa-solid fa-circle-check"></i> Bảo hành 12 tháng chính hãng</li>
                                 </ul>
                             </div>
-                            <a href="https://s.shopee.vn/BRnGEryMk" class="pricing-btn pricing-btn-shopee" style="background: linear-gradient(135deg, var(--orange-accent) 0%, #ff8c00 100%);">
+                            <a href="https://s.shopee.vn/BRnGEryMk" class="pricing-btn pricing-btn-shopee"
+                                style="background: linear-gradient(135deg, var(--orange-accent) 0%, #ff8c00 100%);">
                                 🛒 MUA COMBO ĐỒNG MÀU (839K)
                             </a>
                         </div>
@@ -3056,9 +3076,12 @@
                                     <span class="pricing-new-price">839.000₫</span>
                                 </div>
                                 <ul class="pricing-features-list">
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo Xanh + 1 Áo Xám</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng cao</strong></li>
-                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc 25V</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Áo Xanh + 1 Áo Xám</strong>
+                                    </li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>1 Pin lithium dung lượng
+                                            cao</strong></li>
+                                    <li><i class="fa-solid fa-circle-check"></i> <strong>2 Quạt làm mát siêu tốc
+                                            25V</strong></li>
                                     <li><i class="fa-solid fa-circle-check"></i> Đầy đủ phụ kiện dây cáp + củ sạc</li>
                                     <li><i class="fa-solid fa-circle-check"></i> Dễ dàng thay đổi màu sắc mỗi ngày</li>
                                     <li><i class="fa-solid fa-circle-check"></i> Bảo hành 12 tháng chính hãng</li>
@@ -3174,7 +3197,7 @@
             <i class="fa-solid fa-gears"></i> <span>LẮP ĐẶT</span>
         </a>
         <a href="#reviews" class="quick-dock-btn" onclick="scrollToSection(event, '#reviews')">
-            <i class="fa-solid fa-star"></i> <span>KHÁCH HÀNG ĐÁNH GIÁ</span>
+            <i class="fa-solid fa-star"></i> <span>KHÁCH HÀNG ĐÃ NHẬN XÉT VỀ SẢN PHẨM</span>
         </a>
         <a href="#policies" class="quick-dock-btn" onclick="scrollToSection(event, '#policies')">
             <i class="fa-solid fa-handshake-angle"></i> <span>CAM KẾT</span>
@@ -3182,7 +3205,8 @@
     </div>
 
     <!-- FLOATING CHAT BUBBLE (Messenger) -->
-    <a href="https://m.me/binhanjapan" class="floating-chat-bubble" id="floatingChatBubble" target="_blank" rel="noopener noreferrer">
+    <a href="https://m.me/binhanjapan" class="floating-chat-bubble" id="floatingChatBubble" target="_blank"
+        rel="noopener noreferrer">
         <img src="assets/images/messenger.png" alt="Messenger Chat">
         <span class="chat-tooltip">Chat hỏi đáp tư vấn</span>
         <span class="chat-badge">1</span>
